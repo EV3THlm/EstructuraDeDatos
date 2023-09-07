@@ -14,9 +14,10 @@ class Pila:
     def es_vacia(self):
         return len(self.items) == 0
 
-    def mostrar(self):
-        for item in self.items:
-            print(str(item))
+
+def imprimir_pila(pila):
+    for item in pila.items:
+        print(str(item))
 
 
 def calculadora_polaca(elementos):
@@ -37,7 +38,17 @@ def calculadora_polaca(elementos):
             except ValueError:
                 raise ValueError("Faltan operandos")
 
-            resultado = operando1 + operando2
+            resultado = 0
+            if elemento == "+":
+                resultado = operando1 + operando2
+            elif elemento == "-":
+                resultado = operando1 - operando2
+            elif elemento == "*":
+                resultado = operando1 * operando2
+            elif elemento == "/":
+                resultado = operando1 / operando2
+            elif elemento == "%":
+                resultado = operando1 % operando2
 
             pila.apilar(resultado)
 
@@ -45,8 +56,6 @@ def calculadora_polaca(elementos):
 
 
 if __name__ == "__main__":
-    expresion = "2 3 +"
+    expresion = input("Ingrese la expresión a evaluar: ")
     elementos = expresion.split()
-    resultado = calculadora_polaca(elementos)
-    print(resultado)
-
+    print(calculadora_polaca(elementos))
